@@ -36,8 +36,8 @@ function initGame()
         y = -200,
         width = 120,
         height = 120,
-        health = 1000,
-        max_health = 1000,
+        health = 10000,
+        max_health = 10000,
         state = "entering",
         timer = 0,
         move_speed = 100,
@@ -78,8 +78,8 @@ function initGame()
     SHOOTER_FIRE_RATES = {1.5, 0.8, 0.75, 0.67, 0.45}
     BOSS_TIMINGS = {
         intro_phases = {2, 1.5, 3},
-        fight_duration = 30,
-        retreat_cooldown = 30,
+        fight_duration = 222,
+        retreat_cooldown = 15,
         second_attempt_duration = 60,
         health_regen = 5000,
         direction_change_interval = 2,
@@ -610,13 +610,13 @@ function updateBoss(dt)
             boss.fire_cooldown = boss.state == "rage" and BOSS_TIMINGS.rage_fire_rate or BOSS_TIMINGS.normal_fire_rate
             -- AUDIO: NORMAL FIRE REMINDER
         end
-        if not boss.rage_mode and boss.health <= 500 then
+        if not boss.rage_mode and boss.health <= 5000 then
             boss.rage_mode = true
             boss.state = "rage"
             boss.move_speed = 150
             -- AUDIO: RAGE ACTIVATION REMINDER
         end
-        if not boss.diver_mode and boss.health <= 200 then
+        if not boss.diver_mode and boss.health <= 2000 then
             boss.diver_mode = true
             boss.state = "diver"
             boss.diver_target_x = player.x
